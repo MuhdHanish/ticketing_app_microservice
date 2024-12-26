@@ -1,3 +1,3 @@
-[submodule "ticketing_app_microservice/common"]
-	path = ticketing_app_microservice/common
+[submodule "common"]
+	path = common
 	url = https://github.com/MuhdHanish/ticketing-common.git
