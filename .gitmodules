@@ -1,0 +1,3 @@
+[submodule "intermediate_project/common"]
+	path = intermediate_project/common
+	url = https://github.com/MuhdHanish/ticketing-common.git

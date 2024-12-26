@@ -1,0 +1,58 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - infra/k8s/*
+build:
+  local:
+    push: false
+  artifacts:
+    - image: hanishdev/ticketing-auth
+      context: auth
+      docker:
+        dockerfile: auth/Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.{js,jsx,ts,tsx}"
+            dest: .
+    - image: hanishdev/ticketing-tickets
+      context: tickets
+      docker:
+        dockerfile: tickets/Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.{js,jsx,ts,tsx}"
+            dest: .
+    - image: hanishdev/ticketing-orders
+      context: orders
+      docker:
+        dockerfile: orders/Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.{js,jsx,ts,tsx}"
+            dest: .
+    - image: hanishdev/ticketing-client
+      context: client
+      docker:
+        dockerfile: client/Dockerfile
+      sync:
+        manual:
+          - src: "**/*.{js,jsx,ts,tsx}"
+            dest: .
+    - image: hanishdev/ticketing-expiration
+      context: expiration
+      docker:
+        dockerfile: expiration/Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.{js,jsx,ts,tsx}"
+            dest: .
+    - image: hanishdev/ticketing-payments
+      context: payments
+      docker:
+        dockerfile: payments/Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.{js,jsx,ts,tsx}"
+            dest: .
