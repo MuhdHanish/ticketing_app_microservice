@@ -1,7 +1,9 @@
 name: tests-payments
 
 on: 
-  pull_request
+  pull_request:
+    paths:
+      - 'payments/**'
 
 jobs:
   build:
@@ -11,5 +13,4 @@ jobs:
       - run: cd payments && npm install && npm run test:ci
         env:
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
