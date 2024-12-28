@@ -26,11 +26,11 @@ describe("cancel order", () => {
             .expect(404);
     });
 
-    it("return a 204 if the provided token and id are valid", async () => {
+    it("return a 200 if the provided token and id are valid", async () => {
         const order = await (global as any).createOrder();
         const cookie = (global as any).authenticate(order.user);
         const response = await request(app)
-            .patch(`/api/orders/${order._id}`)
+            .patch(`/api/orders/${order._id}/cancel`)
             .set("Cookie", cookie)
             .send({});
         expect(response.status).toBe(200);
