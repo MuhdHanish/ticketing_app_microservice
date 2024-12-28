@@ -14,7 +14,7 @@ app.set("trust proxy", true);
 app.use(express.json());
 app.use(cookieSession({
     signed: false,
-    secure: process.env.NODE_ENV === "production",
+    secure: process.env.NODE_ENV !== "test",
 }));
 
 app.use("/api/orders", authHandler, orderRouter);
